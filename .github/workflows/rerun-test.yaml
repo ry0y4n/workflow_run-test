@@ -22,3 +22,5 @@ jobs:
         run: |
           echo "${GH_TOKEN:4}"
           echo ${{ github.event.workflow_run.conclusion }}
+          echo ${{ github.event.workflow_run.run_attempt }}
+          echo ${{ github.event.workflow_run.id }}
