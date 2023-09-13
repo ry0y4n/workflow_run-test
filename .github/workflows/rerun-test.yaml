@@ -7,6 +7,7 @@ on:
 jobs:
   rerun-test:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.run_attempt < 3 }}
     steps:
       - uses: actions/checkout@v4
       - name: Generate GitHub Apps token
@@ -24,3 +25,4 @@ jobs:
           echo ${{ github.event.workflow_run.conclusion }}
           echo ${{ github.event.workflow_run.run_attempt }}
           echo ${{ github.event.workflow_run.id }}
+          gh run rerun ${{ github.event.workflow_run.id }} --failed
