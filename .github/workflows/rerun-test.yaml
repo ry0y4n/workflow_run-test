@@ -1,7 +1,7 @@
 name: Rerun Failure Test
 on:
   workflow_run:
-    workflows: [Failure Test]
+    workflows: [Reusable workflow]
     types:
       - completed
 jobs:
