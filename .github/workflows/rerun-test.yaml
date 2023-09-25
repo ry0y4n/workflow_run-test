@@ -18,7 +18,6 @@ jobs:
           private_key: ${{ secrets.GH_APP_PRIVATE_KEY }}
       - name: Rerun test
         env:
-          # GH_HOST: github.com
           GH_TOKEN: ${{ steps.generate-github-app-token.outputs.token }}
         run: |
           echo "${GH_TOKEN:4}"
