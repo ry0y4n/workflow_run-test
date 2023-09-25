@@ -1,4 +1,4 @@
-name: Top Level Workflow
+name: Failure Test
 on:
   workflow_dispatch:
 jobs:
