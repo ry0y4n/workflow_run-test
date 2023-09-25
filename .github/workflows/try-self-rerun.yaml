@@ -1,4 +1,4 @@
-name: Failure Test
+name: Try Self Rerun
 on:
   workflow_dispatch:
 jobs:
