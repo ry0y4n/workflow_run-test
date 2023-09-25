@@ -5,6 +5,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - name: Generate GitHub Apps token
+        id: generate-github-app-token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.GH_APP_ID }}
+          private_key: ${{ secrets.GH_APP_PRIVATE_KEY }}
       - name: Failure Test
         id: failure
         continue-on-error: true
@@ -14,3 +21,8 @@ jobs:
           echo ${{ steps.failure.outcome }}
           echo ${{ github.run_attempt }}
           echo ${{ github.run_id}}
+      - name: rerun-workflow
+        if: ${{ steps.failure.outcome == 'failure' && github.run_attempt < 3 }}
+        env:
+          GH_TOKEN: ${{ steps.generate-github-app-token.outputs.token }}
+        run: gh run rerun ${{ github.run_id }} --failed
