@@ -1,9 +1,11 @@
-name: Failure Test
+name: Top Level Workflow
 on:
   workflow_dispatch:
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Failure Test
-        run: exit 1
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Failure Test
+  #       run: exit 1
+  call-failed-workflow:
+    uses: ./.github/workflows/reusable-workflow.yaml

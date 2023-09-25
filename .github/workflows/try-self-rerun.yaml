@@ -12,6 +12,7 @@ jobs:
         with:
           app_id: ${{ secrets.GH_APP_ID }}
           private_key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+      # 失敗するテストを実行
       - name: Failure Test
         id: failure
         continue-on-error: true
@@ -21,6 +22,7 @@ jobs:
           echo ${{ steps.failure.outcome }}
           echo ${{ github.run_attempt }}
           echo ${{ github.run_id}}
+      # 失敗したら3回までリトライ（上手くいかない）
       - name: rerun-workflow
         if: ${{ steps.failure.outcome == 'failure' && github.run_attempt < 3 }}
         env:
