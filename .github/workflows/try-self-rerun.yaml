@@ -11,4 +11,6 @@ jobs:
         run: exit 1
       - run: |
           echo "Rerun"
-          echo "${{ steps.failure.outcome }}"
+          echo ${{ steps.failure.outcome }}
+          echo ${{ github.run_attempt }}
+          echo ${{ github.run_id}}
