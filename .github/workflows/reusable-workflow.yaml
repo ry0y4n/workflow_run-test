@@ -5,4 +5,6 @@ jobs:
   failed-test:
     runs-on: ubuntu-latest
     steps:
-      - run: exit 1
+      - run: |
+          echo ${{ github.workflow }}
+          exit 1
