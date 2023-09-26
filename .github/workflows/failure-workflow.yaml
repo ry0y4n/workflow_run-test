@@ -7,5 +7,10 @@ jobs:
   #   steps:
   #     - name: Failure Test
   #       run: exit 1
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Failure Test
+        run: echo ${{ github.workflow }}
   call-failed-workflow:
     uses: ./.github/workflows/reusable-workflow.yaml
